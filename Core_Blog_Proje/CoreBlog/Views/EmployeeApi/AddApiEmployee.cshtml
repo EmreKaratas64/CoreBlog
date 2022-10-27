@@ -1,0 +1,26 @@
+﻿@model CoreBlog.Controllers.Employee2
+
+@{
+    ViewData["Title"] = "AddApiEmployee";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="ibox-content">
+    <div class="row">
+        <div class="col-12 b-r">
+            <h3 class="m-t-none m-b">Yeni Çalışan Ekle</h3><br />
+            <form role="form" method="post">
+                <div class="form-group mb-3">
+                    <label class="font-bold">Çalışan isim soyisim</label>
+                    <input type="text" asp-for="Name" placeholder="Kategori adı" class="form-control" required>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div>
+                    <button class="btn btn-outline btn-success btn-rounded px-3" type="submit"><i class="fa fa-paste"></i>&nbsp;&nbsp; Ekle </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

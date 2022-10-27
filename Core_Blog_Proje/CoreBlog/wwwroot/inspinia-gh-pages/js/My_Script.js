@@ -1,0 +1,4 @@
+﻿
+function refreash() {
+    location.reload();
+}

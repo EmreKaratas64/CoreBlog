@@ -1,0 +1,34 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Category>
+
+@{
+    string item_col = "badge-warning";
+}
+
+<div class="tech-btm">
+    <h4>Kategoriler</h4>
+    <ul class="list-group single">
+        @foreach (var item in Model)
+        {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                @item.CategoryName
+                @if (item.NumberOfBlogs >= 0 && item.NumberOfBlogs < 3)
+                {
+                    item_col = "badge-danger";
+                }
+                else if (item.NumberOfBlogs >= 3 && item.NumberOfBlogs < 5)
+                {
+                    item_col = "badge-warning";
+                }
+                else if (item.NumberOfBlogs >= 5 && item.NumberOfBlogs < 10)
+                {
+                    item_col = "badge-info";
+                }
+                else if (item.NumberOfBlogs >= 10)
+                {
+                    item_col = "badge-success";
+                }
+                <span class="badge @item_col badge-pill">@item.NumberOfBlogs</span>
+            </li>
+        }
+    </ul>
+</div>

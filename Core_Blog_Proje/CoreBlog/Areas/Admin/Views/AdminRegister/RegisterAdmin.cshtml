@@ -1,0 +1,110 @@
+﻿@model AdminSignUpViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Kayıt</title>
+
+    <link href="~/inspinia-gh-pages/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/inspinia-gh-pages/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="~/inspinia-gh-pages/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="~/inspinia-gh-pages/css/animate.css" rel="stylesheet">
+    <link href="~/inspinia-gh-pages/css/style.css" rel="stylesheet">
+    <link href="~/inspinia-gh-pages/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen animated fadeInDown w-100">
+        <div>
+            <div>
+
+                <h1 class="logo-name">
+                    <a class="navbar-brand brand-logo-mini"><img src="~/writer/assets/images/logo3.svg" alt="logo" style="width:50px" /></a>
+                </h1>
+
+            </div>
+            <h3>Admin Kayıt Paneli</h3>
+            <form class="m-t" method="post" asp-action="RegisterAdmin" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input type="text" asp-for="@Model.nameSurname" class="form-control" placeholder="Ad soyad">
+                    <span class="text-danger" asp-validation-for="@Model.nameSurname"></span>
+                </div>
+                <div class="form-group">
+                    <input type="file" asp-for="@Model.Image" class="file-upload-default d-none">
+                    <div class="input-group">
+                        <input type="text" asp-for="@Model.Image" class="form-control file-upload-info" disabled placeholder="Fotoğraf seç">
+                        <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-success" type="button"><i class="fa fa-upload"></i>&nbsp;&nbsp; Yükle</button>
+                        </span>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <input type="text" asp-for="@Model.userName" class="form-control" placeholder="Kullanıcı adı">
+                    <span class="text-danger" asp-validation-for="@Model.userName"></span>
+                </div>
+                <div class="form-group">
+                    <input type="email" asp-for="@Model.mail" class="form-control" placeholder="Mail adresi">
+                    <span class="text-danger" asp-validation-for="@Model.mail"></span>
+                </div>
+                <div class="form-group">
+                    <input type="password" asp-for="@Model.password" class="form-control" placeholder="Şifre">
+                    <span class="text-danger" asp-validation-for="@Model.password"></span>
+                </div>
+                <div class="form-group">
+                    <input type="password" asp-for="@Model.passwordConfirm" class="form-control" placeholder="Şifre onay">
+                    <span class="text-danger" asp-validation-for="@Model.passwordConfirm"></span>
+                </div>
+                <div class="form-group">
+                    <div class="">
+                        <div class="i-checks float-left mb-3">
+                            <label class="mr-2" style="font-size:15px">
+                                <input type="checkbox" asp-for="@Model.Gender" style="width:15px; height:15px"><i></i> Erkek
+                            </label>
+                            <label style="font-size:15px">
+                                <input type="checkbox" style="width: 15px; height: 15px"><i></i> Bayan
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">Kayıt Ol</button>
+
+                <p class="text-muted text-center"><span>Zaten kayıtlı mısınız?</span></p>
+                <a class="btn btn-sm btn-white btn-block" href="/Admin/AdminLogin/LogIn">Login</a>
+                <div class="text-danger my-3" asp-validation-summary="ModelOnly">
+
+                </div>
+                <h5 class="text-danger my-2">@TempData["AdminKullaniliyor"]</h5>
+            </form>
+            <p class="m-t"> <span>CoreBlog admin panel &copy; @DateTime.Now.Year</span> </p>
+        </div>
+    </div>
+
+
+    <script src="~/inspinia-gh-pages/js/jquery-3.1.1.min.js"></script>
+    <script src="~/inspinia-gh-pages/js/popper.min.js"></script>
+    <script src="~/inspinia-gh-pages/js/bootstrap.js"></script>
+    <script src="~/writer/assets/js/file-upload.js"></script>
+    <!-- iCheck -->
+    <script src="js/plugins/iCheck/icheck.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+        });</script>
+</body>
+
+</html>
+

@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewData["Title"] = "Yazarlar";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+<link href="~/inspinia-gh-pages/css/AdminStyle.css" rel="stylesheet">
+
+@if (TempData["PasifBasari"] != null)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button" onclick="refreash()">×</button>
+        @TempData["PasifBasari"]
+    </div>
+}
+
+@if (TempData["AktifBasari"] != null)
+{
+    <div class="alert alert-success alert-dismissable">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button" onclick="refreash()">×</button>
+        @TempData["AktifBasari"]
+    </div>
+}
+
+
+
+<div class="col-lg-12">
+    <div class="ibox ">
+        <div class="ibox-title">
+            <h5>Yazarlar</h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+            </div>
+        </div>
+        <div class="ibox-content">
+            <div id="listwritershere" class="table-responsive">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+        window.onload = function () {
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "GET",
+                url: "/Admin/Writer/WriterList",
+                success: function (func) {
+                    var w = jQuery.parseJSON(func);
+
+                    let tablehtml = " <table class=table table-hover> <thead> <tr> <th>#</th><th>Ad Soyad</th> <th>Kullancı Adı</th> <th>Email</th><th>Durum</th> </tr> </thead > <tbody>";
+
+                    var status = "";
+                    var btncol = "btn-warning";
+
+                    $.each(w, (index, value) => {
+                        if (value.Status == true) {
+                            status = "Aktif";
+                            btncol = "btn-primary";
+                        }
+
+                        else {
+                            status = "Pasif";
+                            btncol = "btn-danger";
+                        }
+
+                        tablehtml += `<tr><td>${value.Id}</td><td>${value.NameSurname}</td><td>${value.UserName}</td><td>${value.Email}</td><td> <a href="/Admin/Writer/ChangeWriterStatus/${value.Id}" class="btn btn-outline ${btncol} btn-rounded"><i class="fa fa-warning"></i>&nbsp;&nbsp; ${status} </a> </tr>`
+                    });
+
+                    tablehtml += "</tbody></table>";
+                    $("#listwritershere").html(tablehtml);
+                }
+            });
+        }
+
+    </script>
+
+}
+

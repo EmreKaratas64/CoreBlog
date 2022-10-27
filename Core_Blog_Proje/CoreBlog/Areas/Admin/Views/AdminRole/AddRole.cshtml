@@ -1,0 +1,25 @@
+﻿@model RoleModelView
+
+@{
+    ViewData["Title"] = "Yeni Rol Ekle";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="ibox-content">
+    <div class="row">
+        <div class="col-12 b-r">
+            <h3 class="m-t-none m-b">Yeni Rol Ekle</h3><br />
+            <form role="form" method="post">
+                <div class="form-group mb-3">
+                    <label class="font-bold">Rol Adı</label>
+                    <input type="text" asp-for="@Model.RoleName" placeholder="Rol adı" class="form-control" required>
+                    <span asp-validation-for="@Model.RoleName" class="text-danger"></span>
+                </div>
+                <div>
+                    <button class="btn btn-outline btn-success btn-rounded px-3" type="submit"><i class="fa fa-paste"></i>&nbsp;&nbsp; Ekle </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,68 @@
+﻿@model CoreBlog.Models.SendMessageViewModel
+
+@{
+    ViewData["Title"] = "Mesaj Gönder";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="row">
+    @await Component.InvokeAsync("AdminMessageCategoryRapidAccess")
+
+    <div class="col-lg-9 animated fadeInRight">
+        <div class="mail-box-header">
+            <div class="float-right tooltip-demo">
+                <a href="#" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Taslaklara taşı"><i class="fa fa-pencil"></i> Taslak</a>
+                <a href="/Admin/AdminMessage/SendBox/" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Mesajı iptal et"><i class="fa fa-times"></i> İptal</a>
+            </div>
+            <h2>
+                Yeni Mesaj
+            </h2>
+        </div>
+        <div class="mail-box">
+
+            <div class="mail-body">
+
+                <form method="post" class="form-group" asp-action="SendMessage">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Alıcı Mail Adresi:</label>
+                        <div class="col-sm-10">
+                            <input type="text" asp-for="@Model.AlıcıMail" class="form-control" placeholder="alıcı@gmail.com" value="@ViewBag.receivermail">
+                            <span asp-validation-for="@Model.AlıcıMail" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Konu:</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" asp-for="@Model.Subject" class="form-control" placeholder="konu">
+                            <span asp-validation-for="@Model.Subject" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Mesaj:</label>
+
+                        <div class="col-sm-10">
+                            <textarea type="text" asp-for="@Model.MessageDetails" class="form-control" rows="10" placeholder="mesajınız..."></textarea>
+                            <span asp-validation-for="@Model.MessageDetails" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row my-4 mr-3 justify-content-end">
+                        <button type="submit" class="btn btn-success" title="Send"><i class="fa fa-reply"></i> Gönder</button>
+                    </div>
+
+                    <h5 class="text-danger mt-3">@ViewBag.usernotfoundadmin</h5>
+
+                </form>
+
+
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+
+

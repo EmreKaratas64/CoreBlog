@@ -1,0 +1,86 @@
+﻿@model AdminLoginViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Giriş</title>
+
+    <link href="~/inspinia-gh-pages/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/inspinia-gh-pages/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="~/inspinia-gh-pages/css/animate.css" rel="stylesheet">
+    <link href="~/inspinia-gh-pages/css/style.css" rel="stylesheet">
+    <link href="~/inspinia-gh-pages/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen animated fadeInDown w-100">
+        <div>
+            <div>
+
+                <h1 class="logo-name">
+                    <a class="navbar-brand brand-logo-mini"><img src="~/writer/assets/images/logo3.svg" alt="logo" style="width:50px" /></a>
+                </h1>
+
+            </div>
+            <h3>Admin Giriş Paneli</h3>
+            <p>Giriş yapmak için kullanıcı adı ve şifrenizi kullanın</p>
+            <form class="m-t" method="post" asp-action="LogIn">
+                <div class="form-group">
+                    <input type="text" asp-for="@Model.username" class="form-control" placeholder="Kullanıcı adı">
+                    <span class="text-danger" asp-validation-for="@Model.username"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" asp-for="@Model.password" class="form-control" placeholder="Şifre">
+                    <span class="text-danger" asp-validation-for="@Model.password"></span>
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b" onclick="my_func()">Login</button>
+
+                <a href="#"><span>Şifremi Unuttum</span></a>
+                <p class="text-muted text-center"><span>Hesabınız yok mu?</span></p>
+                <a class="btn btn-sm btn-white btn-block" href="/Admin/AdminRegister/RegisterAdmin">Kayıt Ol</a>
+                <div class="text-danger my-3" asp-validation-summary="ModelOnly">
+
+                </div>
+            </form>
+            <p class="m-t"> <span>CoreBlog admin panel &copy; @DateTime.Now.Year</span> </p>
+        </div>
+    </div>
+
+
+    <!-- Mainly scripts -->
+    <script src="~/inspinia-gh-pages/js/jquery-3.1.1.min.js"></script>
+    <script src="~/inspinia-gh-pages/js/popper.min.js"></script>
+    <script src="~/inspinia-gh-pages/js/bootstrap.js"></script>
+    <script src="~/inspinia-gh-pages/js/plugins/toastr/toastr.min.js"></script>
+    <script>
+        function my_func() {
+            setTimeout(function () {
+                toastr.options = {
+                    closeButton: false,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 4000
+                };
+                toastr.success('Login işlemi başarılı', 'Core Blog');
+
+            }, 1300);
+        }
+
+    </script>
+
+</body>
+
+</html>
+

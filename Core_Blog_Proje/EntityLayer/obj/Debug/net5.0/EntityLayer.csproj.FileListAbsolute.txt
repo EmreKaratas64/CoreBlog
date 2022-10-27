@@ -1,0 +1,12 @@
+D:\WebTasarım\Core_Blog_Proje\EntityLayer\bin\Debug\net5.0\EntityLayer.deps.json
+D:\WebTasarım\Core_Blog_Proje\EntityLayer\bin\Debug\net5.0\EntityLayer.dll
+D:\WebTasarım\Core_Blog_Proje\EntityLayer\bin\Debug\net5.0\ref\EntityLayer.dll
+D:\WebTasarım\Core_Blog_Proje\EntityLayer\bin\Debug\net5.0\EntityLayer.pdb
+D:\WebTasarım\Core_Blog_Proje\EntityLayer\obj\Debug\net5.0\EntityLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:\WebTasarım\Core_Blog_Proje\EntityLayer\obj\Debug\net5.0\EntityLayer.AssemblyInfoInputs.cache
+D:\WebTasarım\Core_Blog_Proje\EntityLayer\obj\Debug\net5.0\EntityLayer.AssemblyInfo.cs
+D:\WebTasarım\Core_Blog_Proje\EntityLayer\obj\Debug\net5.0\EntityLayer.csproj.CoreCompileInputs.cache
+D:\WebTasarım\Core_Blog_Proje\EntityLayer\obj\Debug\net5.0\EntityLayer.dll
+D:\WebTasarım\Core_Blog_Proje\EntityLayer\obj\Debug\net5.0\ref\EntityLayer.dll
+D:\WebTasarım\Core_Blog_Proje\EntityLayer\obj\Debug\net5.0\EntityLayer.pdb
+D:\WebTasarım\Core_Blog_Proje\EntityLayer\obj\Debug\net5.0\EntityLayer.csproj.AssemblyReference.cache

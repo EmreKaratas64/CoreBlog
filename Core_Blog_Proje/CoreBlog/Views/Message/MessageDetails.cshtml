@@ -1,0 +1,46 @@
+﻿@model EntityLayer.Concrete.Message
+@{
+    ViewData["Title"] = "Mesaj Detayı";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+    string durum = "";
+    string durum_bg = "badge-danger";
+}
+
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card p-2">
+        <div class="card-body mb-0">
+            <h4 class="card-title mb-5" style="display:inline-block">Mesaj Detayları</h4>
+            <div class="row">
+                <div class="col-md-3">
+                    <h5 class="font-weight-bold"> Konu: </h5>
+                    <p class="lead mb-4">@Model.Subject</p>
+                    <p class="font-weight-bold mb-2"> Tarih: </p>
+                    <p class="lead mb-4">
+                        @DateTime.Parse(Model.MessageDate.ToString()).ToString("dd-MMM-yyyy")
+                    </p>
+                    <p class="font-weight-bold mb-2"> Mesaj Durumu: </p>
+                    @if (Model.MessageStatus)
+                    {
+                        durum = "Okundu";
+                        durum_bg = "badge-success";
+                    }
+                    else
+                    {
+                        durum = "Okunmadı";
+                        durum_bg = "badge-danger";
+                    } 
+                    <label class="badge @durum_bg mb-4 p-2" style="font-size:16px">@durum</label>
+                </div>
+                <div class="col-md-9">
+                        <h4 class="card-title">Mesaj İçeriği</h4>
+                        <p class="car card-description lead">
+                            @Model.MessageDetails
+                        </p>
+                </div>
+            </div>
+       <a href="/Message/InBox/" class="btn btn-gradient-dark float-right"><i class="mdi mdi-reload btn-icon-prepend"></i>&nbsp; Mesajlara Git</a>
+        </div>
+       
+    </div>
+</div>
+

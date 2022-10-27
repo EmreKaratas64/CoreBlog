@@ -1,0 +1,83 @@
+﻿@model EntityLayer.Concrete.AppUser
+
+<div class="row">
+    <div class="col-lg-4">
+        <div class="widget-head-color-box navy-bg p-lg text-center">
+            <div class="m-b-md">
+                <h2 class="font-bold no-margins">
+                    @Model.NameSurname
+                </h2>
+                <small>Core Blog yetkili kullanıcı</small>
+            </div>
+            <img src="/ProfileImages/@Model.ImageUrl" class="rounded-circle circle-border m-b-md" alt="profile">
+            <div>
+                <span>@ViewBag.gelen_mesaj_sayi</span> |
+                <span>Gelen mesaj</span>
+            </div>
+        </div>
+        <div class="widget-text-box">
+            <h4 class="media-heading">@Model.NameSurname</h4>
+            <p>Şuandaki aktif admin & moderatör rolüne sahip kullanıcı</p>
+            <div class="text-right">
+                <a href="/Admin/AdminSettings/Setting/" class="btn btn-xs btn-outline btn-primary"><i class="fa fa-gear"></i> Ayarlar</a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-lg-2 mt-3">
+        <div class="widget navy-bg p-lg text-center">
+            <div class="m-b-md">
+                <i class="fa fa-user-circle fa-4x"></i>
+                <h1 class="m-xs">@ViewBag.topla_kullanici</h1>
+                <h3 class="font-bold no-margins">
+                    Toplam kullanıcı
+                </h3>
+                <small>CoreBlog</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 mt-3">
+        <div class="widget lazur-bg p-xl">
+
+            <h2>
+                @Model.NameSurname
+            </h2>
+            <ul class="list-unstyled m-t-md">
+                <li>
+                    <span class="fa fa-envelope m-r-xs"></span>
+                    <label>Mail: </label>
+                    @Model.Email
+                </li>
+                <li>
+                    <span class="fa fa-user m-r-xs"></span>
+                    <label>Kullancı Adı: </label>
+                    @Model.UserName
+                </li>
+                <li>
+                    <span class="fa fa-phone m-r-xs"></span>
+                    <label>İletişim: </label>
+                    @Model.PhoneNumber
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="col-lg-2 mt-3">
+        <div class="widget red-bg p-lg text-center">
+            <div class="m-b-md">
+                <i class="fa fa-bell fa-4x"></i>
+                <h1 class="m-xs">@ViewBag.notf_say</h1>
+                <h3 class="font-bold no-margins">
+                    Bildirimler
+                </h3>
+                <small>Toplam bildirim sayısı</small>
+            </div>
+        </div>
+    </div>
+
+  
+</div>

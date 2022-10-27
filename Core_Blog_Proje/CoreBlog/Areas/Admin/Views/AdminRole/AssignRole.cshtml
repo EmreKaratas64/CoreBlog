@@ -1,0 +1,36 @@
+﻿@model List<AssignRoleViewModel>
+@{
+    ViewData["Title"] = "Kullanıcı Rolleri";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div class="ibox-content">
+    <div class="row">
+        <div class="col-12 b-r">
+            <h3 class="m-t-none m-b">Kullanıcı Rolleri</h3><br />
+            <form method="post" asp-action="AssignRole">
+                <label class="font-bold">@ViewBag.UserNameSurname</label>
+                <hr />
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <div class="form-group mb-3">
+                        <input type="hidden" asp-for="@Model[i].RoleID" class="form-control" required>
+                        <input type="hidden" asp-for="@Model[i].RoleName" class="form-control" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="font-bold">Rol</label><br />
+                        <label>
+                        <input type="checkbox" asp-for="@Model[i].Exists" class="i-checks"> @Model[i].RoleName
+                        </label>
+                    </div>
+                }
+
+                <div>
+                    <button class="btn btn-outline btn-success btn-rounded px-3" type="submit"><i class="fa fa-paste"></i>&nbsp;&nbsp; Kaydet</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+﻿@model BlogAddViewModel
+@{
+    ViewData["Title"] = "Blog Ekleme Paneli";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Yeni Blog Ekle</h4><br />
+
+            <form class="forms-sample" method="post" asp-action="AddBlog" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Başlık</label>
+                    <input type="text" asp-for="@Model.blogTitle" class="form-control" />
+                    <span asp-validation-for="@Model.blogTitle" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label>Kategori</label>
+                    @Html.DropDownListFor(x => x.categoryID, (List<SelectListItem>)ViewBag.kategori, new { @class = "form-control" })
+                    <span asp-validation-for="@Model.categoryID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label>Resim Yükle</label>
+                    <input type="file" asp-for="@Model.blogImage" class="file-upload-default">
+                    <div class="input-group col-xs-12">
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Resim Yükleyin">
+                        <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Yükle</button>
+                        </span>
+                    </div>
+                    <span asp-validation-for="@Model.blogImage" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label>Blog İçeriği</label>
+                    <textarea asp-for="@Model.blogContent" class="form-control" rows="10"></textarea>
+                    <span asp-validation-for="@Model.blogContent" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-gradient-info mr-2"><i class="mdi mdi-file-check btn-icon-prepend"></i> Ekle</button>
+                <a href="/Blog/WriterBlogs/" class="btn btn-dark"><i class="mdi mdi-reload btn-icon-prepend"></i> İptal</a>
+            </form>
+
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,58 @@
+﻿@model WriterEditViewModel
+@{
+    ViewData["Title"] = "Yazar Profil";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Yazar Profil Düzenleme</h4><br />
+
+            <form asp-action="WriterSettings" method="post" class="forms-sample" enctype="multipart/form-data">
+                <input type="hidden" asp-for="@Model.ID" class="form-control">
+                <div class="form-group">
+                    <label>Ad Soyad</label>
+                    <input type="text" asp-for="@Model.namesurname" class="form-control" placeholder="Yazar ad soyad">
+                    <span class="text-danger" asp-validation-for="@Model.namesurname"></span>
+                </div>
+                <div class="form-group">
+                    <label>Yazar Fotoğraf</label>
+                    <input type="file" asp-for="@Model.Image" class="file-upload-default">
+                    <div class="input-group col-xs-12">
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Fotoğraf seç">
+                        <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-gradient-success" type="button"><i class="mdi mdi-upload btn-icon-prepend"></i> Yükle</button>
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Şifre</label>
+                    <input type="password" asp-for="@Model.password" class="form-control" placeholder="Şifre">
+                    <span class="text-danger" asp-validation-for="@Model.password"></span>
+                </div>
+                <div class="form-group">
+                    <label>Şifre Tekrar</label>
+                    <input type="password" asp-for="@Model.passwordconfirm" class="form-control" placeholder="Şifre tekrar">
+                    <span class="text-danger" asp-validation-for="@Model.passwordconfirm"></span>
+                </div>
+                <div class="mb-4">
+                    <div class="form-check form-check-info">
+                        <label class="form-check-label text-muted">
+                            <input type="checkbox" asp-for="sifredegistir" class="form-check-input text-info"> Şifremi değiştirmek istiyorum
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-gradient-info mr-2"><i class="mdi mdi-upload btn-icon-prepend"></i> Kaydet</button>
+                <a href="/Dashboard/DashboardPage/" class="btn btn-light"><i class="mdi mdi-reload btn-icon-prepend"></i> İptal</a>
+
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+

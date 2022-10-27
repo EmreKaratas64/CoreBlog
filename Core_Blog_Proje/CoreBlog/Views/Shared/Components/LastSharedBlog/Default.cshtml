@@ -1,0 +1,25 @@
+﻿@using EntityLayer.Concrete
+@model List<Blog>
+
+<div class="single-gd tech-btm">
+    <h4>Son paylaşılan blog</h4>
+    @foreach (var item in Model)
+    {
+        <div class="blog-grids">
+
+            <div class="blog-grid-left">
+                <a href="/Blog/BlogReadAll/@item.BlogID">
+                    <img src="/BlogImages/@item.BlogImage" class="img-fluid" alt="">
+                </a>
+            </div>
+            <div class="blog-grid-right">
+
+                <h5>
+                    <a href="/Blog/BlogReadAll/@item.BlogID">@item.BlogTitle</a>
+                </h5>
+            </div>
+            <div class="clearfix"> </div>
+
+        </div>
+    }
+</div>

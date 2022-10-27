@@ -1,0 +1,50 @@
+﻿@model EntityLayer.Concrete.Comment
+
+@{
+    ViewData["Title"] = "Yazar Blog Yorum Detayı";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+    string blog_rating_color = "badge-warning";
+}
+
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card p-2">
+        <div class="card-body mb-0">
+            <h4 class="card-title mb-5" style="display:inline-block">Yorum Detayları</h4>
+            <div class="row">
+                <div class="col-md-3">
+                    <h5 class="font-weight-bold"> Kullanıcı: </h5>
+                    <p class="lead mb-4">@Model.CommentUserName</p>
+                    <h4 class="font-weight-bold"> Konu: </h4>
+                    <p class="lead mb-4">@Model.CommentTitle</p>
+                    <p class="font-weight-bold mb-2"> Tarih: </p>
+                    <p class="lead mb-4">
+                        @DateTime.Parse(Model.CommentDate.ToString()).ToString("dd-MMM-yyyy")
+                    </p>
+                    <p class="font-weight-bold mb-2"> Blog Puanı: </p>
+                    @if (Model.BlogScore >= 0 && Model.BlogScore < 2)
+                    {
+                        blog_rating_color = "badge-danger";
+                    }
+                    else if (Model.BlogScore >= 2 && Model.BlogScore < 4)
+                    {
+                        blog_rating_color = "badge-warning";
+                    }
+                    else if (Model.BlogScore >= 4 && Model.BlogScore <= 5)
+                    {
+                        blog_rating_color = "badge-success";
+                    }
+                    <label class="badge @blog_rating_color mb-4 p-2" style="font-size:16px">@Model.BlogScore</label>
+                </div>
+                <div class="col-md-9">
+                    <h4 class="card-title">Mesaj İçeriği</h4>
+                    <p class="car card-description lead">
+                        @Model.CommentContent
+                    </p>
+                </div>
+            </div>
+            <a href="/Writer/CommentsByWriter/" class="btn btn-gradient-dark float-right"><i class="mdi mdi-reload btn-icon-prepend"></i>&nbsp; Yorumlara Git</a>
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,49 @@
+﻿
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="widget navy-bg no-padding">
+            <div class="p-m">
+                <h1 class="m-xs">@ViewBag.CevaplanmamisMesaj</h1>
+
+                <h3 class="font-bold no-margins">
+                    Okunamamış Site Mesajları
+                </h3>
+                <small style="font-size:12px">Cevaplanmamış toplam mesaj sayısını belirtir. Bu sayı 15 üzerine çıktığında yazarlara ve adminlere bildirim gitmektedir. Mesajlara gitmek için <a href="/Admin/Contact/ContactMessages/" class="text-dark font-weight-bold">tıklayın</a></small>
+            </div>
+            <div class="flot-chart">
+                <div class="flot-chart-content" id="flot-chart1"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="widget lazur-bg no-padding">
+            <div class="p-m">
+                <h1 class="m-xs">@ViewBag.Mailbulteniabone</h1>
+
+                <h3 class="font-bold no-margins">
+                    Mail Bülteni
+                </h3>
+                <small style="font-size:12px">Mail bültenindeki abone sayısıdır. Abonelikleri görmek için <a href="/MailNewsLetter/ListSubscribers/" class="font-weight-bold">tıklayın</a></small>
+            </div>
+            <div class="flot-chart">
+                <div class="flot-chart-content" id="flot-chart2"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="widget yellw-bg no-padding">
+            <div class="p-m">
+                <h1 class="m-xs">@ViewBag.Yazarsayisi</h1>
+
+                <h3 class="font-bold no-margins">
+                    Yazarlar
+                </h3>
+                <small style="font-size:12px">Blog sitesindeki toplam yazar sayısıdır. Yazarları görmek için <a href="/Admin/Writer/WriterPage/" class="font-weight-bold">tıklayın</a> </small>
+            </div>
+            <div class="flot-chart">
+                <div class="flot-chart-content" id="flot-chart3"></div>
+            </div>
+        </div>
+    </div>
+</div>

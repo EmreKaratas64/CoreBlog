@@ -1,0 +1,29 @@
+﻿@using EntityLayer.Concrete
+@model List<Blog>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Son Yayınlanan Blogların Görselleri</h4>
+        <div class="d-flex">
+            <div class="d-flex align-items-center mr-4 text-muted font-weight-light">
+                <i class="mdi mdi-account-outline icon-sm mr-2"></i>
+                <span>Yazar @ViewBag.namesurname</span>
+            </div>
+            <div class="d-flex align-items-center text-muted font-weight-light">
+                <i class="mdi mdi-clock icon-sm mr-2"></i>
+                <span>@DateTime.Now.ToShortDateString()</span>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            @foreach (var item in Model)
+            {
+                <div class="col-6">
+                    <img src="/BlogImages/@item.BlogImage" class="mb-2 mw-100 w-100 rounded" alt="image">
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

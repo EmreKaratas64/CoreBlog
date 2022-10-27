@@ -1,0 +1,42 @@
+﻿@model SendMessageViewModel
+
+@{
+    ViewData["Title"] = "SendMessage";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Yeni Blog Ekle</h4><br />
+
+            <form class="forms-sample" asp-action="SendMessage" method="post">
+                <div class="form-group">
+                    <label>Konu</label>
+                    <input type="text" asp-for="@Model.Subject" class="form-control" />
+                    <span asp-validation-for="@Model.Subject" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label>Alıcı Mail</label>
+                    <input type="email" asp-for="@Model.AlıcıMail" class="form-control" />
+                    <span asp-validation-for="@Model.AlıcıMail" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Mesaj İçerik</label>
+                    <textarea type="text" asp-for="@Model.MessageDetails" class="form-control" rows="7"></textarea>
+                    <span asp-validation-for="@Model.MessageDetails" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-gradient-info mr-2"><i class="mdi mdi-file-check btn-icon-prepend"></i> Gönder</button>
+                <a href="/Message/SendBox/" class="btn btn-dark"><i class="mdi mdi-reload btn-icon-prepend"></i> İptal</a>
+
+                <h5 class="text-danger mt-3">@ViewBag.usernotfound</h5>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+

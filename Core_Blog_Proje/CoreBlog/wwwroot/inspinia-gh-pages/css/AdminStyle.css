@@ -1,0 +1,27 @@
+﻿.btn:hover {
+    color: white !important
+}
+
+.btn-danger {
+    color: #ed5666 !important
+}
+
+.btn-success {
+    color: #1d84c6 !important
+}
+
+.btn-warning {
+    color: #f8ac5a !important
+}
+
+.btn-info {
+    color: #24c6c8 !important
+}
+
+.btn-primary {
+    color: #1bb394 !important
+}
+
+td label {
+    border-radius: 10px;
+}

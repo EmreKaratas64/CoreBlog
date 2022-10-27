@@ -1,0 +1,160 @@
+﻿@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common
+@model IPagedList<EntityLayer.Concrete.Blog>
+@using DataAccessLayer.Concrete
+
+@{
+    ViewData["Title"] = "Core Blog";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+    Context c = new Context();
+}
+
+<div class="banner">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <div class="carousel-caption">
+                    <h3>
+                        ŞİMDİ İSTEDİĞİN KONULARI
+                        <span>ÖĞRENEBİLİRSİN</span>
+                    </h3>
+                    <div class="read">
+                        <a href="/UserRegister/UserRegistration/" class="btn btn-primary read-m">Öğrenmeye Şimdi Başla</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item item2">
+                <div class="carousel-caption">
+                    <h3>
+                        BİR AMAÇ EDİN VE ÖĞRENMEYE
+                        <span>ŞİMDİ BAŞLA</span>
+                    </h3>
+                    <div class="read">
+                        <a href="/UserRegister/UserRegistration/" class="btn btn-primary read-m">Öğrenmeye Şimdi Başla</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item item3">
+                <div class="carousel-caption">
+                    <h3>
+                        KENDİ TARZINI İSTEDİĞİN ŞEKİLDE
+                        <span>OLUŞTUR</span>
+                    </h3>
+                    <div class="read">
+                        <a href="/UserRegister/UserRegistration/" class="btn btn-primary read-m">Öğrenmeye Şimdi Başla</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item item4">
+                <div class="carousel-caption">
+                    <h3>
+                        İLGİ ÇEKİCİ BLOGLAR
+                        <span>SENİ BEKLİYOR</span>
+                    </h3>
+                    <div class="read">
+                        <a href="/UserRegister/UserRegistration/" class="btn btn-primary read-m">Öğrenmeye Şimdi Başla</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+
+@if (TempData["MailSuccess"] != null)
+{
+    <br />
+    <div class="alert alert-dismissible" style="background: #29a649; color: white">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="refreash()">&times;</button>
+        <h5><i class="fas fa-check-square"></i> Bilgilendirme!</h5>
+        @TempData["MailSuccess"]
+    </div>
+}
+
+@if (TempData["MailFail"] != null)
+{
+    <br />
+    <div class="alert alert-dismissible" style="background: #ffc107; color: white">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="refreash()">&times;</button>
+        <h5><i class="fas fa-check-square"></i> Uyarı!</h5>
+        @TempData["MailFail"]
+    </div>
+}
+
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <h3 class="tittle">Bloglar</h3>
+        <div class="inner-sec">
+            <!--left-->
+            <div class="left-blog-info-w3layouts-agileits text-left">
+                <div class="row">
+
+                    @foreach (var item in Model)
+                    {
+
+
+                        <div class="col-lg-4 card mb-3">
+                            <a href="/Blog/BlogReadAll/@item.BlogID">
+                                <img src="/BlogImages/@item.BlogImage" class="card-img-top img-fluid" alt="">
+                            </a>
+                            <div class="card-body">
+                                <ul class="blog-icons my-4">
+                                    <li>
+                                        <a href="#">
+                                            <i class="far fa-calendar-alt"></i> @DateTime.Parse(item.BlogCreateDate.ToString()).ToString("dd-MMM-yyyy")
+                                        </a>
+                                    </li>
+                                    <li style="margin-right:3px">
+                                        <a href="#">
+                                            <i class="far fa-comment"></i> @c.Comments.Where(x => x.BlogID == item.BlogID).Count()
+                                        </a>
+                                    </li>
+                                    <li style="margin-right:0px">
+                                        <a href="#">
+                                            <i class="fas fa-eye"></i> @item.Category.CategoryName
+                                        </a>
+                                    </li>
+
+                                </ul>
+                                <h5 class="card-title">
+                                    <a href="/Blog/BlogReadAll/@item.BlogID">@item.BlogTitle</a>
+                                </h5>
+                                <p class="card-text mb-3">
+                                    @item.BlogContent.Substring(0, item.BlogContent.Substring(0, 130).LastIndexOf("")) ...
+                                </p>
+                                <a href="/Blog/BlogReadAll/@item.BlogID" class="btn btn-primary read-m">Devamını Oku</a>
+                            </div>
+                        </div>
+
+                        <br />
+                    }
+                </div>
+
+
+                <br />
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Bloglar", new { page }), new PagedListRenderOptions
+           {
+               LiElementClasses = new string[] { "page-item" },
+               PageClasses = new string[] { "page-link" }
+           })
+
+            </div>
+        </div>
+    </div>
+</section>
+

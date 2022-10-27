@@ -1,0 +1,65 @@
+﻿@using CoreBlog.Controllers
+@model List<Employee2>
+
+@{
+    ViewData["Title"] = "ApiEmployee";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<link href="~/inspinia-gh-pages/css/AdminStyle.css" rel="stylesheet">
+
+@if (TempData["Calisansilmebasari"] != null)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+        @TempData["Calisansilmebasari"]
+    </div>
+    TempData["Calisansilmebasari"] = null;
+}
+
+<div class="col-lg-12">
+    <div class="ibox ">
+        <div class="ibox-title">
+            <h5>Kategoriler </h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+            </div>
+        </div>
+        <div class="ibox-content">
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Ad Soyad</th>
+                        <th>Sil</th>
+                        <th>Düzenle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th>@item.ID</th>
+                            <td>@item.Name</td>
+
+                            <td class="text-navy">
+                                <a href="/EmployeeApi/DeleteEmployee/@item.ID" class="btn btn-outline btn-danger btn-rounded" onclick="return confirm('BU çalışanı silmek istediğinizden emin misiniz?')"><i class="fa fa-warning"></i>&nbsp;&nbsp;Sil</a>
+                            </td>
+                            <td>
+                                <a href="/EmployeeApi/EditEmployee/@item.ID" class="btn btn-outline btn-warning btn-rounded"><i class="fa fa-upload"></i>&nbsp;&nbsp;Düzenle</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+            <a href="/EmployeeApi/AddApiEmployee/" class="btn btn-outline btn-success btn-rounded"><i class="fa fa-paste"></i>&nbsp;&nbsp;Çalışan Ekle</a>
+        </div>
+    </div>
+</div>
+
+

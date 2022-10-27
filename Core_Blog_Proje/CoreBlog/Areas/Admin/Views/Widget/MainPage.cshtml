@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="wrapper wrapper-content animated fadeInRight">
+
+    @await Component.InvokeAsync("WidgetsTop")
+
+    @await Component.InvokeAsync("WidgetTop2")
+
+    @await Component.InvokeAsync("WidgetTop4")
+
+    <div class="row m-t-lg">
+        <div class="col-lg-6">
+            <div class="ibox ">
+
+                @await Component.InvokeAsync("CommentsToBeApproved")
+
+            </div>
+        </div>
+
+
+        <div class="col-lg-6">
+            <div>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <button type="button" class="btn btn-danger m-r-sm">@ViewBag.mesajlar</button>
+                                Mesajlar
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary m-r-sm">@ViewBag.bloglar</button>
+                                Bloglar
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-info m-r-sm">@ViewBag.yorumlar</button>
+                                Yorumlar
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="button" class="btn btn-info m-r-sm">@ViewBag.kategoriler</button>
+                                Kategoriler
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-success m-r-sm">@ViewBag.aktif_yazar</button>
+                                Aktif Yazarlar
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger m-r-sm">@ViewBag.bildirimler</button>
+                                Bildirimler
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="button" class="btn btn-warning m-r-sm">@ViewBag.aktif_blog</button>
+                                Aktif Bloglar
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-default m-r-sm">@ViewBag.moderatorler</button>
+                                Moderatörler
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-warning m-r-sm">@ViewBag.adminler</button>
+                                Adminler
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        <div class="ibox-content text-center">
+                            <h1>@ViewBag.constructor_name</h1>
+                            <div class="m-b-sm">
+                                <img alt="image" class="rounded-circle" src="/ProfileImages/@ViewBag.constructor_img">
+                            </div>
+                            <p class="font-bold">Site Kurucusu</p>
+
+                            <div class="text-center">
+                                <a href="/Admin/AdminMessage/SendMessage/@ViewBag.site_const_id" class="btn btn-xs btn-outline btn-primary"><i class="fa fa-phone"></i> İletişim</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            toastr.options = {
+                closeButton: true,
+                progressBar: true,
+                showMethod: 'slideDown',
+                timeOut: 4000
+            };
+            toastr.success('Responsive Admin Theme', 'Welcome to INSPINIA');
+
+        }, 1300);
+
+    });
+</script>

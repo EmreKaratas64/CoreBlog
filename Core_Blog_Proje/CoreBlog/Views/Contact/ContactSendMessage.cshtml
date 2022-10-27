@@ -1,0 +1,26 @@
+﻿<form action="/Contact/ContactSendMessage/" method="post">
+    <div class="row contact_left_grid">
+        <div class="col-md-6 con-left">
+            <div class="form-group">
+                <label for="validationCustom01 my-2">Ad soyad</label>
+                <input class="form-control" type="text" name="ContactUserName" required="">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Mail</label>
+                <input class="form-control" type="email" name="ContactMail" required="">
+            </div>
+            <div class="form-group">
+                <label for="validationCustom03 my-2">Konu</label>
+                <input class="form-control" type="text" name="ContactSubject" required="">
+            </div>
+        </div>
+        <div class="col-md-6 con-right">
+            <div class="form-group">
+                <label for="textarea">Mesaj</label>
+                <textarea name="ContactMessage" required></textarea>
+            </div>
+            <input class="form-control" type="submit" value="Gönder">
+
+        </div>
+    </div>
+</form>

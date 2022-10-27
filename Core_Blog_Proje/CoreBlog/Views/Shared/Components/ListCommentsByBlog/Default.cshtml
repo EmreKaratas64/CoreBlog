@@ -1,0 +1,34 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Comment>
+
+@{ 
+    string img_url = "";
+}
+
+<div class="comment-top">
+    <h4>Yorumlar</h4>
+
+    @if (TempData["YorumYok"] == null)
+    {
+        foreach (var item in Model)
+        {
+            @if (item.AppUser.Gender == true)
+                img_url = "/writer/assets/images/faces-clipart/pic-1.png";
+            else
+                img_url = "/writer/assets/images/faces-clipart/pic-3.png";
+
+            <div class="media">
+                <img src="@img_url" alt="" class="img-fluid" />
+                <div class="media-body">
+                    <h5 class="mt-0">@item.CommentUserName.Substring(0,3)***</h5>
+                    <p>
+                        @item.CommentContent
+                    </p>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <h5>@TempData["YorumYok"]</h5>
+    }
+</div>

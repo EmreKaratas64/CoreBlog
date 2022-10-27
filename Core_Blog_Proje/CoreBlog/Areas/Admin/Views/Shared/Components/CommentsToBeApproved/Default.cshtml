@@ -1,0 +1,59 @@
+﻿@using EntityLayer.Concrete
+@model List<Comment>
+
+@{
+    int counter = 0;
+    string right_left = "";
+    string img_right_left = "";
+    string date_right_left = "";
+    string text_right_left = "";
+}
+
+<div class="ibox-content">
+
+    <div>
+        <h4 class="mb-3">Onaylanmayan Yorumlar</h4>
+        <div class="chat-activity-list">
+
+            @foreach (var item in Model)
+            {
+                @if (counter % 2 == 0)
+                {
+                    right_left = "";
+                    img_right_left = "float-left";
+                    text_right_left = "";
+                    date_right_left = "float-right text-navy";
+                }
+                else
+                {
+                    right_left = "right";
+                    img_right_left = "float-right";
+                    text_right_left = "text-right";
+                    date_right_left = "float-left";
+                }
+
+                <div class="chat-element @right_left">
+
+                    <a href="/Admin/Comment/CommentsPage/" class="@img_right_left">
+                        <img alt="image" class="rounded-circle" src="/ProfileImages/@item.Blog.AppUser.ImageUrl">
+                    </a>
+
+                    <div class="media-body @text_right_left">
+
+                        <small class="@date_right_left">
+                            @DateTime.Parse(item.CommentDate.ToString()).ToString("dd-MMM-yyyy") - Puan: @item.BlogScore
+                        </small>
+                        <strong>@item.CommentUserName</strong>
+                        <p class="m-b-xs">
+                            @item.CommentContent
+                        </p>
+                        <small class="text-muted">Blog: @item.Blog.BlogTitle - Yorum Başlık: @item.CommentTitle</small>
+                    </div>
+                </div>
+
+                counter++;
+
+            }
+        </div>
+    </div>
+</div>

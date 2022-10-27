@@ -1,0 +1,95 @@
+﻿@using EntityLayer.Concrete
+@model List<Message>
+
+@{
+    ViewData["Title"] = "Gelen Mesaj Detayı";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+    string isread = "unread";
+    string ischeck = "";
+}
+
+@if (TempData["InBoxdeletesuccess"] != null)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button" onclick="refreash()">×</button>
+        @TempData["InBoxdeletesuccess"]
+    </div>
+}
+
+<div class="row">
+
+    @await Component.InvokeAsync("AdminMessageCategoryRapidAccess")
+
+    <div class="col-lg-9 animated fadeInRight">
+        <div class="mail-box-header">
+
+            <form method="get" action="index.html" class="float-right mail-search">
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-sm" name="search" placeholder="Mesaj arayın">
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-sm btn-primary">
+                            Ara
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <h2>
+                Gelen Kutusu (@ViewBag.gelen_mesaj)
+            </h2>
+            <div class="mail-tools tooltip-demo m-t-md">
+                <div class="btn-group float-right">
+                    <button class="btn btn-outline-dark  btn-sm"><i class="fa fa-arrow-left"></i></button>
+                    <button class="btn btn-outline-dark  btn-sm"><i class="fa fa-arrow-right"></i></button>
+                </div>
+                <button onclick="refreash()" class="btn btn-outline-dark btn-sm" data-toggle="tooltip" data-placement="left" title="Sayfayı yenile"><i class="fa fa-refresh"></i> Yenile</button>
+
+            </div>
+        </div>
+        <div class="mail-box">
+            <div class="table-responsive">
+                <table class="table table-hover table-mail">
+
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            if (item.MessageStatus == true)
+                            {
+                                isread = "unread";
+                                ischeck = "";
+                            }
+
+                            else
+                            {
+                                ischeck = "checked";
+                                isread = "read";
+                            }
+
+                            <tr class="@isread">
+                                <td class="check-mail">
+                                    <input type="checkbox" class="i-checks" @ischeck>
+                                </td>
+                                <td class="mail-ontact"><a href="mail_detail.html">@item.Subject</a> <span class="label label-success float-right">@item.SenderUser.NameSurname</span> </td>
+                                <td class="mail-subject">
+                                    <a href="mail_detail.html">
+                                        @item.MessageDetails.Substring(0, item.MessageDetails.Substring(0, 30).LastIndexOf("")) ...
+                                    </a>
+                                </td>
+                                <td class=""></td>
+                                <td class="text-right mail-date">@DateTime.Parse(item.MessageDate.ToString()).ToString("dd-MMM-yyyy")</td>
+                                <td>
+                                    <a href="/Admin/AdminMessage/DeleteInBoxMessage/@item.MessageID" onclick="return confirm('Bu mesajı silmek istediğinizden emin misiniz?')" class="btn btn-outline-dark  btn-sm" title="Mesajı sil"><i class="fa fa-trash-o"></i> </a>
+
+                                    <a href="/Admin/AdminMessage/MessageDetailInBox/@item.MessageID" class="btn btn-outline-dark  btn-sm" title="Detayları gör"><i class="fa fa-eye"></i> </a>
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                </div>
+            </div>
+        </div>
+</div>
+

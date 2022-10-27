@@ -1,0 +1,54 @@
+﻿@model EntityLayer.Concrete.Category
+
+@{
+    ViewData["Title"] = "BringCategory";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="ibox-content">
+    <div class="row">
+        <div class="col-12 b-r">
+            <h3 class="m-t-none m-b mb-4">Kategori Güncelle</h3>
+            <div>
+                <div class="form-group mb-3">
+                    <input id="txtcategoryid" type="hidden" asp-for="CategoryID" class="form-control" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="font-bold">Kategori Adı</label><br />
+                    <input id="txtcategoryname" type="text" asp-for="CategoryName" placeholder="Kategori adı" class="form-control" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="font-bold">Kategori Açıklama</label><br />
+                    <textarea id="txtcategorydescription" type="text" asp-for="CategoryDescription" placeholder="Kategori açıklama" rows="7" class="form-control" required></textarea>
+                </div>
+                <div>
+                    <button id="btncategoryupdate" class="btn btn-outline btn-warning btn-rounded px-3 mr-2" type="submit"><i class="fa fa-upload"></i>&nbsp;&nbsp; Güncelle </button>
+                    <a class="btn btn-outline btn-dark btn-rounded px-3" href="/Admin/Category/CategoryList/"><i class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp; Kategorilere Git </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+        $("#btncategoryupdate").click(function () {
+            let category = {
+                CategoryID: $("#txtcategoryid").val(),
+                CategoryName: $("#txtcategoryname").val(),
+                CategoryDescription: $("#txtcategorydescription").val()
+            };
+
+            $.ajax({
+                type: "post",
+                url: "/Admin/Category/EditCategory/",
+                data: category,
+                success: function (func) {
+                    alert("Güncelleme işlemi başarıyla yapıldı");
+                }
+            });
+        });
+    </script>
+}
+

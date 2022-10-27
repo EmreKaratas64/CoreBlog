@@ -1,0 +1,71 @@
+﻿@model EntityLayer.Concrete.Notification
+
+
+@{
+    ViewData["Title"] = "BringNotification";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="ibox-content">
+    <div class="row">
+        <div class="col-12 b-r">
+            <h3 class="m-t-none m-b mb-4">Bildirim Güncelle</h3>
+            <div>
+                <div class="form-group mb-3">
+                    <input id="txtnotificationid" type="hidden" asp-for="NotificationID" class="form-control" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="font-bold">Başlık</label><br />
+                    <input id="txtnotificationtitle" type="text" asp-for="NotificationType" placeholder="Bildirim başlığı" class="form-control" required>
+                    <span class="text-danger" asp-validation-for="NotificationType"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="font-bold">Bildirim İkonu</label><br />
+                    <input id="txtnotificationicon" type="text" asp-for="NotificationTypeIcon" placeholder="Bildirim ikonu" class="form-control" required>
+                    <span class="text-danger" asp-validation-for="NotificationType"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="font-bold">Bildirim Rengi</label><br />
+                    <input id="txtnotificationcolor" type="text" asp-for="NotificationColor" placeholder="Bildirim rengi" class="form-control" required>
+                    <span class="text-danger" asp-validation-for="NotificationColor"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="font-bold">Bildirim Detayı</label><br />
+                    <textarea id="txtnotificationdetails" type="text" asp-for="NotificationDetails" placeholder="Bildirim detayları" rows="7" class="form-control" required></textarea>
+                    <span class="text-danger" asp-validation-for="NotificationDetails"></span>
+                </div>
+                <div>
+                    <button id="btnnotificationupdate" class="btn btn-outline btn-warning btn-rounded px-3 mr-2" type="submit"><i class="fa fa-upload"></i>&nbsp;&nbsp; Güncelle </button>
+                    <a class="btn btn-outline btn-dark btn-rounded px-3" href="/Admin/Notification/NotificationPage/"><i class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp; Bildirimlere Git </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+        $("#btnnotificationupdate").click(function () {
+            let notification = {
+                NotificationID: $("#txtnotificationid").val(),
+                NotificationType: $("#txtnotificationtitle").val(),
+                NotificationTypeIcon: $("#txtnotificationicon").val(),
+                NotificationColor: $("#txtnotificationcolor").val(),
+                NotificationDetails: $("#txtnotificationdetails").val()
+            };
+
+
+            $.ajax({
+                type: "post",
+                url: "/Admin/Notification/EditNotification/",
+                data: notification,
+                success: function (func) {
+                    alert("Güncelleme işlemi başarıyla yapıldı");
+                }
+            });
+
+        });
+    </script>
+}
+

@@ -1,0 +1,79 @@
+﻿@using EntityLayer.Concrete
+@model List<Comment>
+
+@{
+    ViewData["Title"] = "Yazar Blog Yorumları";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+    string blog_score_color = "badge-gradient-warning";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Bloglara Yapılan Yorumlar</h4>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Kullanıcı</th>
+                            <th>Blog</th>
+                            <th>Başlık</th>
+                            <th>Tarih</th>
+                            <th>Puan</th>
+                            <th>Detaylar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <th>@item.CommentUserName</th>
+
+                            <td>@item.Blog.BlogTitle</td>
+
+                            <td>@item.CommentTitle</td>
+
+                            <td>@DateTime.Parse(item.CommentDate.ToString()).ToString("dd-MMM-yyyy")</td>
+
+                            @if (item.BlogScore >= 0 && item.BlogScore < 3)
+                            {
+                                blog_score_color = "badge-gradient-danger";
+                            }
+                            else if (item.BlogScore >= 3 && item.BlogScore < 4)
+                            {
+                                blog_score_color = "badge-gradient-warning";
+                            }
+                            else if (item.BlogScore >= 4 && item.BlogScore <= 5)
+                            {
+                                blog_score_color = "badge-gradient-success";
+                            }
+
+                            <td><label class="badge @blog_score_color" style="font-size:14px">@item.BlogScore</label></td>
+
+                            <td class="text-navy">
+                                <button class="btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#Modal1"><i class="mdi mdi-link-variant"></i>&nbsp; İçerik</button>
+
+
+                                <div class="modal" id="Modal1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h2 class="modal-title">Yorum İçeriği</h2>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label>@item.CommentContent</label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

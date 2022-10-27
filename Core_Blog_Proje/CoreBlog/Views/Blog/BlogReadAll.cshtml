@@ -1,0 +1,92 @@
+﻿@model EntityLayer.Concrete.Blog
+
+@{
+    ViewData["Title"] = "Blog Detayları";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+    double blog_persentage = 0.0;
+}
+
+<!--//banner-->
+<section class="banner-bottom">
+    <!--/blog-->
+    <div class="container">
+        <div class="row">
+            <!--left-->
+            <div class="col-lg-8 left-blog-info-w3layouts-agileits text-left">
+                <div class="blog-grid-top">
+                    <div class="b-grid-top">
+                        <div class="blog_info_left_grid">
+                            <a href="single.html">
+                                <img src="/BlogImages/@Model.BlogImage" class="img-fluid" alt="">
+                            </a>
+                        </div>
+                        <div class="blog-info-middle">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="far fa-calendar-alt"></i> @DateTime.Parse(Model.BlogCreateDate.ToString()).ToString("dd-MMM-yyyy")
+                                    </a>
+                                </li>
+                                <li class="mx-2">
+                                    <a href="#">
+                                        <i class="far fa-star"></i>    
+                                        @if (Model.BlogRating.BlogRatingCount == 0)
+                                        {
+                                            blog_persentage = 0;
+
+                                        }
+                                        else
+                                        {
+                                            blog_persentage = (double)Model.BlogRating.BlogTotalScore / (double)Model.BlogRating.BlogRatingCount;
+                                        }
+
+                                        @blog_persentage.ToString("0.00")
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="far fa-comment"></i> @ViewBag.comment_number
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>
+                        <a href="single.html">@Model.BlogTitle </a>
+                    </h3>
+                    <p>
+                        @Model.BlogContent
+                    </p>
+                </div>
+                @await Component.InvokeAsync("ListCommentsByBlog", new { id = Model.BlogID })
+
+                @await Html.PartialAsync("~/Views/Comment/AddComment.cshtml")
+            </div>
+
+            <!--//left-->
+            <!--right-->
+            <aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
+                <div class="right-blog-info text-left">
+                    <div class="tech-btm">
+                        <img src="~/web/images/banner1.jpg" class="img-fluid" alt="">
+                    </div>
+                    <h4>Mail bültenine abone olun</h4>
+                    @await Html.PartialAsync("SubscribeMail")
+
+
+                    @await Component.InvokeAsync("ListAllCategories")
+
+                    @await Component.InvokeAsync("BlogsByWriter", new { id = Model.AppUserId })
+                
+                    @await Component.InvokeAsync("LastSharedBlog")
+
+                </div>
+
+            </aside>
+            <!--//right-->
+        </div>
+    </div>
+</section>
+<!--//main-->

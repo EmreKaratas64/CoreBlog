@@ -1,0 +1,43 @@
+﻿
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="~/web/css/rating_stars.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js" crossorigin="anonymous"></script>
+
+<script>
+    function myfunc() {
+        let ad = document.getElementById("txtad");
+        let konu = document.getElementById("txtkonu");
+        let cont = document.getElementById("txtcont");
+        if (ad.value != "" && konu.value != "" && cont.value != "") {
+            swal("Tebrikler", "Yorumunuz başarıyla eklendi !", "success");
+        }
+    }
+</script>
+
+<div class="comment-top">
+    <h4>Yorum yapın</h4>
+    <div class="comment-bottom">
+        <form action="/Comment/AddComment" method="post">
+            <div class="rate mb-4">
+                <h6>Puanınız</h6>
+                <input type="radio"  id="star5" name="BlogScore" value="5" />
+                <label for="star5">5 stars</label>
+                <input type="radio" id="star4" name="BlogScore" value="4" />
+                <label for="star4">4 stars</label>
+                <input type="radio" id="star3" name="BlogScore" value="3" />
+                <label for="star3">3 stars</label>
+                <input type="radio" id="star2" name="BlogScore" value="2" />
+                <label for="star2">2 stars</label>
+                <input type="radio" id="star1" name="BlogScore" value="1" />
+                <label for="star1">1 star</label>
+            </div>
+            <input id="txtad" class="form-control" type="text" name="CommentUserName" placeholder="Ad soyad" required>
+            <input id="txtkonu" class="form-control" type="text" name="CommentTitle" placeholder="Konu" required>
+            <textarea id="txtcont" class="form-control" name="CommentContent" placeholder="Yorumunuz.." rows="5" required></textarea>
+            <input class="form-control" type="hidden" value="@Model.BlogID" name="BlogID" />
+            <button id="makecomment" type="submit" class="btn btn-primary submit" onclick="myfunc()">Paylaş</button>
+        </form>
+    </div>
+</div>

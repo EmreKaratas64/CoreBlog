@@ -1,0 +1,68 @@
+﻿@using EntityLayer.Concrete
+@model List<Blog>
+
+@{
+    double blog_persentage = 0.0;
+    string rating_icon = "";
+    string rating_color = "";
+}
+
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Son 4 Bloğunuz</h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th> Başlık </th>
+                            <th> Kategori </th>
+                            <th>Tarih</th>
+                            <th> Puan </th>
+                            <th> Detay </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            if (item.BlogRating.BlogRatingCount == 0)
+                            {
+                                blog_persentage = 0;
+
+                            }
+                            else
+                            {
+                                blog_persentage = (double)item.BlogRating.BlogTotalScore / (double)item.BlogRating.BlogRatingCount;
+
+                            }
+                            if (blog_persentage >= 0 && blog_persentage < 2.5)
+                            {
+                                rating_icon = "mdi-arrow-down";
+                                rating_color = "text-danger";
+                            }
+                            else if (blog_persentage >= 2.5 && blog_persentage <= 5)
+                            {
+                                rating_icon = "mdi-arrow-up";
+                                rating_color = "text-success";
+                            }
+
+                            <tr>
+                                <td>@item.BlogTitle</td>
+                                <td><label class="badge badge-gradient-info">@item.Category.CategoryName</label></td>
+                                <td>@DateTime.Parse(item.BlogCreateDate.ToString()).ToString("dd-MMM-yyyy")</td>
+
+                                <td class="@rating_color">
+                                    @blog_persentage.ToString("0.00") <i class="mdi @rating_icon"></i>
+                                </td>
+
+
+                                <td><a href="/Blog/UpdateBlog/@item.BlogID" class="btn btn-outline-dark btn-sm">Detay</a></td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

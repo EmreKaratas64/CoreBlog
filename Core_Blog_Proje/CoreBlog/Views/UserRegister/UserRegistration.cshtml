@@ -1,0 +1,75 @@
+﻿@model UserSignUpViewModel
+
+@{
+    ViewData["Title"] = "Kullanıcı Kayıt";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    function myfunc() {
+        swal("Bu platforma kayıt olarak bilgilerimin kullanıcı gizliliği dikkate alınarak işlenmesini, gerekli platformalarla paylaşılmasını ve şifre hariç diğer bilgilerimin gerektiğinde yetkili kişiler tarafından görülebileceğini kabul etmiş bulunuyorum.");
+
+        let checkbox = document.getElementById("terms");
+        checkbox.disabled = true;
+    }
+</script>
+
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <h3 class="tittle">CoreBlog Kayıt Formu</h3>
+        <div class="inner-sec">
+            <div class="login p-5 bg-light mx-auto mw-100">
+                <form method="post" asp-action="UserRegistration">
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label>Adınız Soyadınız</label>
+                            <input type="text" class="form-control" placeholder="Adınız soyadınız" asp-for="@Model.NameSurname" />
+                            <span class="text-danger" asp-validation-for="@Model.NameSurname"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>Mail</label>
+                            <input type="email" class="form-control" placeholder="Mail adresiniz" asp-for="@Model.Mail" />
+                            <span class="text-danger" asp-validation-for="@Model.Mail"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>Kullanıcı Adı</label>
+                            <input type="text" class="form-control" placeholder="Kullanıcı adınız" asp-for="@Model.UserName" />
+                            <span class="text-danger" asp-validation-for="@Model.UserName"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Şifre</label>
+                            <input type="password" class="form-control" placeholder="Şifre" asp-for="@Model.Password" required />
+                            <span class="text-danger" asp-validation-for="@Model.Password"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Şifrenizi Onaylayın</label>
+                            <input type="password" asp-for="@Model.PasswordConfirm" placeholder="Şifrenizi onaylayın" class="form-control" required>
+                            <span class="text-danger" asp-validation-for="@Model.PasswordConfirm"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Cinsiyet</label><br />
+
+                            <input type="checkbox" asp-for="@Model.Gender" style="width:20px; height:15px;">
+                            <span class="checkmark">Erkek</span>
+                            <input type="checkbox" style="width:20px; height:15px; margin-left:10px">
+                            <span class="checkmark">Bayan</span>
+                        </div>
+
+                    </div>
+                    <p>
+                        <input type="checkbox" class="mb-3" id="terms" onclick="myfunc()" required /> Kullanıcı sözleşmesini kabul ediyorum
+                    </p>
+                    <button type="submit" class="btn btn-primary submit mb-4">Kaydet</button>
+                    <p class="mb-3">Zaten bir hesbınız var mı? <a href="/UserLogin/UserLogin/">Giriş yapın</a></p>
+                    <div class="text-danger" asp-validation-summary="ModelOnly">
+
+                    </div>
+                    <h5 class="text-danger">@TempData["Kullaniliyor"]</h5>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
